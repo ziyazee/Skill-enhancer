@@ -40,7 +40,7 @@ main {
           </li>
           {% if user.is_superuser %}
           <li>
-            <a href="{% url 'post' %}">post an assignment</a>
+            <a href="{% url 'Assignment:post' %}">post an assignment</a>
           </li>
           {%endif%}
           <li>
@@ -58,7 +58,7 @@ main {
       </li>
       {% if user.is_superuser %}
       <li>
-        <a href="{% url 'post' %}">post an assignment</a>
+        <a href="{% url 'Assignment:post' %}">post an assignment</a>
       </li>
       {%endif%}
       <li>
@@ -80,7 +80,7 @@ main {
     <nav class="grey lighten-2">
         <div class="nav-wrapper">
           <div class="col s12">
-              <a href="{% url 'index' %}" class="black-text breadcrumb">Home</a>
+              <a href="{% url 'Assignment:index' %}" class="black-text breadcrumb">Home</a>
 
             <a href="#!" class="black-text breadcrumb">{{request.resolver_match.kwargs.subjects}}</a>
 
@@ -101,7 +101,7 @@ main {
 
               <!-- only the assigned lecturer can delete the assignment -->
               {% if sub.assignedBy == user.get_username  %}
-                <a href="{% url 'delete'  assignmentName=sub.assignmentName %}"><button type="submit" name="b1"class="tooltipped btn"data-position="right" data-tooltip="Delete this assignment"><span style="">X</span></button></a>
+                <a href="{% url 'Assignment:delete'  assignmentName=sub.assignmentName %}"><button type="submit" name="b1"class="tooltipped btn"data-position="right" data-tooltip="Delete this assignment"><span style="">X</span></button></a>
               {%endif%}
 
               <div class='card-content white-text'>
@@ -113,7 +113,7 @@ main {
             </div>
             {% if user.is_superuser %}
               <div class='card-action'>
-                <a href="{% url 'uploadInfo' upload=sub.assignmentName %}" style='text-decoration:none;'><b>Click here</b></a>
+                <a href="{% url 'Assignment:uploadInfo' upload=sub.assignmentName %}" style='text-decoration:none;'><b>Click here</b></a>
               </div>
             {% endif %}
           </div>
@@ -129,7 +129,7 @@ main {
           <div class="card" >
               <div class="card-body">
 <div class="card-title">
-   <a href="{% url 'uploadInfo' upload=sub.assignmentName %}" style="text-decoration:none;"><b>{{sub.assignmentName }}</b></a>
+   <a href="{% url 'Assignment:uploadInfo' upload=sub.assignmentName %}" style="text-decoration:none;"><b>{{sub.assignmentName }}</b></a>
 </div>
                   <div class="card-subtitle mb-2 text-muted">{{sub.assignedBy}}</div>
         </div></div>
@@ -177,7 +177,7 @@ $(document).ready(function(){
   });
 
 {% for suc in subject %}
-timedown("{{suc.assignmentDate}}",'{{suc.assignmentName}}','{{ suc.assignmentName.url }}','{{suc.assignedBy}}',"{% url 'uploadInfo' upload=suc.assignmentName %}");
+timedown("{{suc.assignmentDate}}",'{{suc.assignmentName}}','{{ suc.assignmentName.url }}','{{suc.assignedBy}}',"{% url 'Assignment:uploadInfo' upload=suc.assignmentName %}");
 {% endfor %}
 
 function timedown(ti,id,fnameurl,usn,upload){

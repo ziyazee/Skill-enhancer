@@ -7,6 +7,8 @@ from .models import main,submission,mysubjects
 from .forms import uploadForm,PostForm,subjectForm
 from django.template.context_processors import csrf
 from django.db.models import Count,Q
+from django.core.mail import send_mail
+from django.conf import settings
 # from collection import Counter
 
 def logout_view(request):
@@ -20,9 +22,19 @@ def posted(request):
     # print(choice)
     if request.method == 'POST' and 'postit' in request.POST:
         mainform = PostForm(request.POST,request.FILES)
-        print(mainform)
+        subjects=request.POST.get('subjects')
+        aname=request.POST.get('assignmentName')
+        des=request.POST.get('assignmentDescription')
+        date=request.POST.get('assignmentDate')
+        mesage=aname+"\n"+des+"\n\n Requensting that you need to be submit within "+date
         if mainform.is_valid():
             mainform.save()
+            subject = subjects
+            message = mesage
+            email_from = settings.EMAIL_HOST_USER
+            recipient_list = ['ziyamohd123@gmail.com',]
+            send_mail( subject, message, email_from, recipient_list )
+            print("hye")
             return redirect("Assignment/index/")
     else:
         mainform = PostForm( initial = {'assignedBy':name})

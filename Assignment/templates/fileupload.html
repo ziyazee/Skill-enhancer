@@ -27,7 +27,7 @@
           </li>
           {% if user.is_superuser %}
           <li>
-            <a href="{% url 'post' %}">post an assignment</a>
+            <a href="{% url 'Assignment:post' %}">post an assignment</a>
           </li>
           {%endif%}
           <li>
@@ -46,7 +46,7 @@
       </li>
       {% if user.is_superuser %}
       <li>
-        <a href="{% url 'post' %}">post an assignment</a>
+        <a href="{% url 'Assignment:post' %}">post an assignment</a>
       </li>
       {%endif%}
       <li>
@@ -64,7 +64,7 @@
     <nav class="grey lighten-2">
         <div class="nav-wrapper">
           <div class="col s12">
-              <a href="{% url 'index' %}" class="black-text breadcrumb">Home</a>
+              <a href="{% url 'Assignment:index' %}" class="black-text breadcrumb">Home</a>
                 {% for i in assignmentInfo%}
                 <a href="#!" class="black-text breadcrumb">{{i.assignmentName}}</a>
               {%endfor%}
@@ -79,7 +79,7 @@
       <ul class="left hide-on-med-and-down">
         <li><a  href="#">hello, {{ user.get_username }}</a></li>
         <li>
-          <a href="{% url 'post' %}">post an assignment</a>
+          <a href="{% url 'Assignment:post' %}">post an assignment</a>
         </li>
         <li><form action="accounts/logout/"method="post" style="margin:0">
                           {% csrf_token %}
