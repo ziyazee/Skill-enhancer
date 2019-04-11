@@ -1,0 +1,66 @@
+{% extends "interface.html" %}
+
+       {% block content %}
+       <div class="container">
+
+       <form method="POST" class="post-form"enctype="multipart/form-data">
+        {% csrf_token %}
+   
+      
+       <input type="text" placeholder="Subject Name" name="subjectName"id="subjectName" />
+       <input type="text"  placeholder="Topic" name="topicHeading" id="topicHeading" />
+       <textarea name="topicDescription"  placeholder="Topic Description" id="topicDescription" style="height:25%;width:100%" ></textarea>
+       <br><br>
+
+       <center> 
+           <button type="submit" class="btn btn-success"style="width:100%;"><span style="">Save</span></button>
+       </center>
+   </form>
+
+
+
+
+
+
+
+
+
+
+
+<br>
+<br>
+<br>
+
+        <center><h3><b> Subject names </b>  </h3></center>
+
+
+
+
+
+{% for y in yea %}
+
+  
+
+
+    <a href="{% url 'InterviewPrep:topicName' subjectName=y.subjectName %}" style="text-decoration:none;">
+            
+            <div class="col s12 m8">
+                    <div class="card blue-grey darken-1">
+                      <div class="card-content white-text">
+                        <span class="card-title">{{ y.subjectName }}</span>
+                       
+                      </div>
+                      
+                    
+                  </div>
+                </div>
+              
+          </a>
+          
+          
+              {% endfor %} 
+          </div>
+          <br>
+          
+          
+              {% endblock %}

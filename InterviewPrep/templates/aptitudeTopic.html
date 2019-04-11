@@ -1,0 +1,62 @@
+{% extends "interface.html" %}
+
+       {% block content %}
+
+       <div class="container">
+
+
+       <form method="POST" class="post-form"enctype="multipart/form-data">
+        {% csrf_token %}
+   
+      
+       <input type="text" name="topicName"id="topicName" />
+       <input type="text" name="topicDescription" id="topicDescription" />
+       <center> 
+           <button type="submit" class="btn btn-success"style="width:100%;"><span style="">Save</span></button>
+       </center>
+   </form>
+
+
+
+
+
+
+
+
+
+
+
+<br>
+<br>
+<br>
+
+
+        <center><h3><b> Aptitude topics </b>  </h3></center>
+
+
+
+
+{% for y in yea %}
+
+    <a href="{% url 'InterviewPrep:aptitudeDescription' topicName=y.topicName  %}">
+    
+            <div class="col s12 m8">
+                    <div class="card blue-grey darken-1">
+                      <div class="card-content white-text">
+                        <span class="card-title">{{ y.topicName }}</span>
+                       
+                      </div>
+                      
+                    
+                  </div>
+                </div>
+              
+          </a>
+          
+          
+              {% endfor %} 
+          </div>
+          <br>
+          
+          
+              {% endblock %}

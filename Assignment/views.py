@@ -32,7 +32,7 @@ def posted(request):
             subject = subjects
             message = mesage
             email_from = settings.EMAIL_HOST_USER
-            recipient_list = ['ziyamohd123@gmail.com',]
+            recipient_list = ['pj14133@gmail.com','deekshashetty2908@gmail.com',]
             send_mail( subject, message, email_from, recipient_list )
             print("hye")
             return redirect("Assignment/index/")
