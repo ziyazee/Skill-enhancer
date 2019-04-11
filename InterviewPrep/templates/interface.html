@@ -52,7 +52,7 @@ li a {
     <body style="background-color:#AFBDC4;">
 <nav style="background-color:#142334;">
     <div class="nav-wrapper">
-      <a href="#!" class="brand-logo"style="margin-left:10px;">SkillAnalyser</a>
+      <a href="#!" class="brand-logo"style="margin-left:10px;">SkillEnhancer</a>
       <a href="#" data-target="mobile-nav" class="sidenav-trigger">
         <i class="material-icons">menu</i>
       </a>
@@ -61,7 +61,7 @@ li a {
           <a  href="#">hello, {{ user.get_username }}</a>
         </li>
         <li>
-          <a href="{% url 'Assignment:post' %}">Profile</a>
+          <a href="#">Profile</a>
         </li>
         <li>
           <a href="{% url 'Assignment:post' %}">About</a>
@@ -80,11 +80,7 @@ li a {
     <li>
       <a  href="#">hello, {{ user.get_username }}</a>
     </li>
-    {% if user.is_superuser %}
-    <li>
-      <a href="{% url 'Assignment:post' %}">post an assignment</a>
-    </li>
-    {%endif%}
+    
     <li>
       <form action="accounts/logout/"method="post" style="margin-top:5px;margin-left:30px;">
         {% csrf_token %}
@@ -92,7 +88,6 @@ li a {
       </form>
     </li>
   </ul>
-
 
 
 
@@ -111,7 +106,7 @@ li a {
           <ul>
               <li><a class="grey-text text-lighten-3" href="#!">CODING</a></li>
             <li><a class="grey-text text-lighten-3" href="#!">INTERVIEW PREP</a></li>
-            <li><a class="grey-text text-lighten-3" href="#!">ASSIGNMENT</a></li>
+            <li><a class="grey-text text-lighten-3" href="https://www.google.com">ASSIGNMENT</a></li>
             <li><a class="grey-text text-lighten-3" href="#!">FILE MANAGER</a></li>
           </ul>
         </div>

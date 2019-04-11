@@ -30,7 +30,10 @@
 li {
   float: left;
 }
-
+::placeholder{
+  color:black;
+  opacity: 1;
+}
 li a {
   display: block;
   color: white;
@@ -60,9 +63,12 @@ li a {
         <li>
           <a href="#">Profile</a>
         </li>
+      {% if user.is_superuser %}  
+
         <li>
-          <a href="#">About</a>
+          <a href="{% url 'Assignment:post' %}">Post an Assignment</a>
         </li>
+        {% endif %}
         <li>
           <form action="accounts/logout/"method="post" style="margin-top:5px;margin-right:5px;">
             {% csrf_token %}
@@ -77,7 +83,11 @@ li a {
     <li>
       <a  href="#">hello, {{ user.get_username }}</a>
     </li>
-    
+    {% if user.is_superuser %}
+    <li>
+      <a href="#">post an assignment</a>
+    </li>
+    {%endif%}
     <li>
       <form action="accounts/logout/"method="post" style="margin-top:5px;margin-left:30px;">
         {% csrf_token %}
@@ -85,7 +95,6 @@ li a {
       </form>
     </li>
   </ul>
-
 
 
 
@@ -104,7 +113,7 @@ li a {
           <ul>
               <li><a class="grey-text text-lighten-3" href="#!">CODING</a></li>
             <li><a class="grey-text text-lighten-3" href="#!">INTERVIEW PREP</a></li>
-            <li><a class="grey-text text-lighten-3" href="#!">ASSIGNMENT</a></li>
+            <li><a class="grey-text text-lighten-3" href="https://www.google.com">ASSIGNMENT</a></li>
             <li><a class="grey-text text-lighten-3" href="#!">FILE MANAGER</a></li>
           </ul>
         </div>

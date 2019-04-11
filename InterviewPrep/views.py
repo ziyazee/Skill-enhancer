@@ -31,7 +31,7 @@ def topicName(request,subjectName):
     subject=Subjects.objects.filter(subjectName=subjectName)
     
     if request.user.is_authenticated:    
-        return render(request,'topicName.html',{'subject':subject})   
+        return render(request,'topicName.html',{'subject':subject,'subjectName':subjectName})   
     else:
         return redirect("/")
 
@@ -64,7 +64,7 @@ def codingTopic(request):
 def codingDescription(request,topicHeading):
     subject=popularCodingProblems.objects.filter(topicHeading=topicHeading)
     if request.user.is_authenticated:    
-        return render(request,'codingTopicDescription.html',{'subject':subject})   
+        return render(request,'codingTopicDescription.html',{'subject':subject,'topicHeading':topicHeading})   
     else:
         return redirect("/")
 
@@ -91,7 +91,7 @@ def aptitudeTopic(request):
 def aptitudeDescription(request,topicName):
     subject=Aptitude.objects.filter(topicName=topicName)
     if request.user.is_authenticated:    
-        return render(request,'aptitudeDescription.html',{'subject':subject})   
+        return render(request,'aptitudeDescription.html',{'subject':subject,'topicName':topicName})   
     else:
         return redirect("/")
 
@@ -116,7 +116,7 @@ def interviewTopic(request):
 def companyExperience(request,companyName):
     subject=InterviewExperience.objects.filter(companyName=companyName)
     if request.user.is_authenticated:    
-        return render(request,'companyDescription.html',{'subject':subject})   
+        return render(request,'companyDescription.html',{'subject':subject,'companyName':companyName})   
     else:
         return redirect("/")
 
