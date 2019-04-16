@@ -4,6 +4,7 @@ from django.http import HttpResponse,HttpResponseRedirect
 from .models import clasyear
 from .models import filest
 from .forms import PostForm
+from MainBoard.models import *
 
 
 def home(request):
@@ -45,8 +46,17 @@ def files(request,categorie):
     file=filest.objects.filter(categorie=categorie).order_by('fname')
     if request.method == 'POST':
         form = PostForm(request.POST,request.FILES)
+        userName=None
+        if request.user.is_authenticated:
+            userName = request.user.username
         if form.is_valid():
             form.save()
+            s=Profile.objects.filter(user=request.user)
+            points=15
+            for i in s:
+                i.usersScore+=points
+                print(i.usersScore)
+                i.save()
             return HttpResponseRedirect(request.path_info)
            
     else:
