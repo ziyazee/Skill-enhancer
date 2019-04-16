@@ -9,12 +9,15 @@
 
        <div class="container">
 <h4>{{ topicName }}</h4>
+
 {% for i in subject %}
         <div class="col s12 m6">
               <div class="card grey lighten-2 ">
                 <div class="card-content black-text ">
                   <!-- <span class="card-title">{{ i.topicName }}</span> -->
                   <p>{{ i.topicDescription }}</p>
+                  <br>
+            <p><b>post by {{i.userName}}</b></p>
                 </div>
                
               </div>

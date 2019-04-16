@@ -1,0 +1,139 @@
+{% extends 'interface.html' %}
+
+
+
+<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>            
+{% block content %}
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+
+
+
+
+
+
+
+<div class="container" style="background-color:#eeeeee;border-radius:5%">
+    <div class="row">
+<br>
+<br>
+    	<div class="span3 well">
+        <center>
+        <img src="https://gix.uw.edu/wp-content/uploads/2019/01/photo-placeholder.jpeg" name="aboutme" width="140" height="140" class="img-circle">
+         <h3>{{ user.get_username|title }} </h3>
+         <em>Information Science and engineering</em>
+         <p>Nmamit nitte<br></p>
+         
+         
+                <div class="card grey lighten-2 " style="width:50%">
+                     
+                  <div class="card-content black-text ">
+                        
+                            <p style="font-size: 40px;">Your score :<span class="count">{{score}}</span>
+                            </p>
+                            
+                  </div>
+                </div>
+                <a href="{% url 'MainBoard:rank' %}">Check rank list</a>
+                            <br>
+                            <br>
+                        <script>
+
+                                $('.count').each(function () {
+                                    $(this).prop('Counter',0).animate({
+                                        Counter: $(this).text()
+                                    }, {
+                                        duration: 2000,
+                                        easing: 'swing',
+                                        step: function (now) {
+                                            $(this).text(Math.ceil(now));
+                                        }
+                                    });
+                                });
+                                
+                                </script>
+                    
+                  
+                 
+                
+              </div>
+            </div>
+         
+			</center>
+           
+</div>
+</div>
+</div>
+
+
+
+        <div class="container">
+                <h5><i>Contributions</i></h5>
+
+                <hr>
+   
+        <div class="col s12 m8">
+                <div class="card grey lighten-2">
+                  <div class="card-content ">
+                    <p style="font-size:20px;">Categories</p>
+                      {% for y in subject %}
+                      <a href="{% url 'InterviewPrep:topicName' subjectName=y.subjectName %}" style="text-decoration:none;">
+                          <p style="color:black" >{{ forloop.counter }}){{ y.subjectName }}</p>
+                  </a>
+                  {% endfor %} 
+                  </div>
+              </div>
+            </div>
+        
+            <div class="col s12 m8">
+                <div class="card grey lighten-2">
+                  <div class="card-content ">
+                    <p style="font-size:20px;">Interview Experiences</p>
+                      {% for y in InterviewExperience %}
+                      <a href="{% url 'InterviewPrep:companyExperience' companyName=y.companyName  %}" style="text-decoration:none;">
+                    <p style="color:black" >{{ forloop.counter }}){{ y.companyName }}</p>
+                  </a>
+                  {% endfor %} 
+                  </div>
+              </div>
+            </div>
+            <div class="col s12 m8">
+                <div class="card grey lighten-2">
+                  <div class="card-content ">
+                    <p style="font-size:20px;"> Coding problems</p>
+                      {% for y in popularCodingProblems %}
+                      <a href="{% url 'InterviewPrep:codingDescription' topicHeading=y.topicHeading  %}"style="text-decoration:none;">
+                    <p style="color:black" >{{ forloop.counter }}){{ y.topicHeading }}</p>
+                  </a>
+                  {% endfor %} 
+                  </div>
+              </div>
+            </div>
+            <div class="col s12 m8">
+                <div class="card grey lighten-2">
+                  <div class="card-content ">
+                    <p style="font-size:20px;">Aptitude</p>
+                      {% for y in aptitude %}
+                      <a href="{% url 'InterviewPrep:aptitudeDescription' topicName=y.topicName %}" style="text-decoration:none;">
+                    <p style="color:black" >{{ forloop.counter }}){{ y.topicName }}</p>
+                  </a>
+                  {% endfor %} 
+                  </div>
+              </div>
+            </div>
+          
+      
+      
+
+                </div>
+                       
+                
+    
+
+
+
+
+
+
+
+{% endblock %}

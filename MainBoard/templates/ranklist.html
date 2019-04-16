@@ -1,0 +1,39 @@
+
+{% extends 'interface.html' %}
+            
+{% block content %}
+<br><br>
+<div class="container" style="background-color:#eeeeee">
+    <table class="striped centered" >
+        <thead>
+          <tr>
+              <th>No.</th>
+              <th>Name</th>
+              <th>Score</th>
+              
+          </tr>
+        </thead>
+
+        <tbody>
+                {% for k in res %}
+                
+                
+                
+          <tr>
+              <td>{{ forloop.counter }}.</td>
+            <td>
+                <!-- <a href="{% url 'MainBoard:profile' username=k.user %}" style="text-decoration:none;"> -->
+                    {{k.user|title}}
+                <!-- </a> -->
+            </td>
+            <td>{{k.usersScore}}</td>
+            
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+    </div>
+    <br><br>
+      {% endblock %}
+            

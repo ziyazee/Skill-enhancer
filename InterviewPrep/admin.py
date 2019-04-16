@@ -1,18 +1,18 @@
 from django.contrib import admin
 from .models import *
 # Register your models here.
-@admin.register(Subjects)
+@admin.register(Subject)
 class  kundan(admin.ModelAdmin):
-    list_display=['subjectName','topicHeading','topicDescription']
+    list_display=['userName','subjectName','topicHeading','topicDescription']
 
-@admin.register(InterviewExperience)
+@admin.register(InterviewExperiences)
 class  kundan(admin.ModelAdmin):
-    list_display=['companyName','companyExperience']
+    list_display=['userName','companyName','companyExperience']
 
-@admin.register(Aptitude)
+@admin.register(Aptitud)
 class  kundan(admin.ModelAdmin):
-    list_display=['topicName','topicDescription']
+    list_display=['userName','topicName','topicDescription']
 
-@admin.register(popularCodingProblems)
+@admin.register(popularCodingProblem)
 class  kundan(admin.ModelAdmin):
-    list_display=['topicHeading','topicDescription']
+    list_display=['userName','topicHeading','topicDescription']

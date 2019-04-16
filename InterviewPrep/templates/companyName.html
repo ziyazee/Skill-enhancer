@@ -1,21 +1,55 @@
 {% extends "interface.html" %}
        {% block content %}
+       <style>
+          ::-webkit-input-placeholder { /* Edge */
+            color: grey;
+          }
+          
+          :-ms-input-placeholder { /* Internet Explorer */
+            color: grey;
+          }
+          
+          ::placeholder {
+            color: grey;
+          }
+          </style>
+<br>
        <div class="container">
-
+          <div class="col s12 m6">
+              <div class="card grey lighten-2 ">
+                <div class="card-content black-text ">
        <form method="POST" class="post-form"enctype="multipart/form-data">
         {% csrf_token %}
    
-      
-       <input type="text" style="color: black" placeholder="Company Name" name="companyName"id="companyName" />
-    
+        <input type="hidden" name="userName" id="userName" value= {{ user.get_username }}  />
+  
+       <input type="text" style="color: black" placeholder="Company Name" name="company"id="companyName" />
+       <input type="hidden" style="color: black" placeholder="Company Name" name="companyName"id="set" />
+
        <textarea  placeholder="Write your experience here !" name="companyExperience" id="companyExperience" style="height:25%;width:100%;color:black" ></textarea>
        <br>
        <br>
        <center> 
-           <button type="submit" class="btn btn-success"style="width:100%;"><span style="">Save</span></button>
+           <button type="submit"onclick="my()" class="btn btn-success"style="width:100%;"><span style="">Save</span></button>
        </center>
    </form>
 
+</div>
+</div>
+</div>
+
+
+<script>
+    function my(){
+      var subjectName=document.getElementById('companyName').value;
+      console.log(subjectName.length);
+      var i;
+      var spaces="-";
+      var sub=subjectName.replace(" ","-");
+      document.getElementById('set').value=sub;
+    
+    }
+</script>
 
 
 
@@ -25,35 +59,53 @@
 
 
 
-
-<br>
-<br>
-<br>
 
 
 
         <center><h3><b> COMPANIES </b>  </h3></center>
+        <div class="input-field col s12">
+            <i class="material-icons prefix">search</i>
+            <input type="text" id="myInput" onkeyup="myFunction()"class="autocomplete">
+            <label for="myInput">search for topics</label>
+          </div>
+           <div id="myUL">
 
         {% for y in yea %}
-        <a href="{% url 'InterviewPrep:companyExperience' companyName=y.companyName  %}">
-       
-        <div class="col s12 m8">
-          <div class="card blue-grey darken-1">
-            <div class="card-content white-text">
-              <span class="card-title">{{ y.companyName }}</span>
-             
-            </div>
-            
-          
+        <span>
+            <a href="{% url 'InterviewPrep:companyExperience' companyName=y.companyName  %}">
+                <div class="col s12 m8">
+                <div class="card blue-grey darken-1">
+                  <div class="card-content white-text">
+           <h6>{{ y.companyName }}</h6>
+          </div></div></div>
+        </a>
+        </span>
+        {% endfor %} 
         </div>
-      </div>
-    
-</a>
+        
+        </div>
+            
+       
 
-
-    {% endfor %} 
-</div>
 <br>
+<script>
+    function myFunction() {
+        var input, filter, ul, li, a, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        ul = document.getElementById("myUL");
+        li = ul.getElementsByTagName("span");
+        for (i = 0; i < li.length; i++) {
+            a = li[i].getElementsByTagName("a")[0];
+            txtValue = a.textContent || a.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                li[i].style.display = "";
+            } else {
+                li[i].style.display = "none";
+            }
+        }
+    }
+    </script>
 
 
     {% endblock %}

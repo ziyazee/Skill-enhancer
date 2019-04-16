@@ -1,66 +1,100 @@
 {% extends "interface.html" %}
 
        {% block content %}
+     
+          <style>
+          ::-webkit-input-placeholder { /* Edge */
+            color: grey;
+          }
+          
+          :-ms-input-placeholder { /* Internet Explorer */
+            color: grey;
+          }
+          
+          ::placeholder {
+            color: grey;
+          }
+          </style>
+<br>
        <div class="container">
-
+          <div class="col s12 m6">
+              <div class="card grey lighten-2 ">
+                <div class="card-content black-text ">
        <form method="POST" class="post-form"enctype="multipart/form-data">
         {% csrf_token %}
-   
+        <input type="hidden" name="userName" id="userName" value= {{ user.get_username }}  />
+
+        <input type="text" placeholder="Subject Name" name="subject"id="subjectName" />
       
-       <input type="text" placeholder="Subject Name" name="subjectName"id="subjectName" />
-       <input type="text"  placeholder="Topic" name="topicHeading" id="topicHeading" />
-       <textarea name="topicDescription"  placeholder="Topic Description" id="topicDescription" style="height:25%;width:100%" ></textarea>
+       <input type="hidden" placeholder="Subject Name" name="subjectName"id="set" />
+       <input type="text"  placeholder="Topic name" name="topicHeading" id="topicHeading" />
+       <textarea name="topicDescription"  placeholder="Topic Description..." id="topicDescription" style="height:25%;width:100%" ></textarea>
        <br><br>
 
        <center> 
-           <button type="submit" class="btn btn-success"style="width:100%;"><span style="">Save</span></button>
+           <button type="submit" onclick="my()" class="btn btn-success"style="width:100%;"><span style="">Save</span></button>
        </center>
    </form>
-
-
-
-
-
-
-
-
-
-
-
-<br>
-<br>
-<br>
-
+</div>
+</div>
+</div>
+<script>
+    function my(){
+      var subjectName=document.getElementById('subjectName').value;
+      console.log(subjectName.length);
+      var i;
+      var spaces="-";
+      var sub=subjectName.replace(" ","-");
+      document.getElementById('set').value=sub;
+    
+    }
+</script>
         <center><h3><b> Subject Names </b>  </h3></center>
 
 
 
-
+        <div class="input-field col s12">
+            <i class="material-icons prefix">search</i>
+            <input type="text" id="myInput" onkeyup="myFunction()"class="autocomplete">
+            <label for="myInput">search for topics</label>
+          </div>
+           <div id="myUL">
 
 {% for y in yea %}
 
-  
-
-
+<span>
     <a href="{% url 'InterviewPrep:topicName' subjectName=y.subjectName %}" style="text-decoration:none;">
-            
-            <div class="col s12 m8">
-                    <div class="card blue-grey darken-1">
-                      <div class="card-content white-text">
-                        <span class="card-title">{{ y.subjectName }}</span>
-                       
-                      </div>
-                      
-                    
-                  </div>
-                </div>
-              
-          </a>
-          
-          
-              {% endfor %} 
-          </div>
+        <div class="col s12 m8">
+        <div class="card blue-grey darken-1">
+          <div class="card-content white-text">
+   <h6>{{ y.subjectName }}</h6>
+  </div></div></div>
+</a>
+</span>
+{% endfor %} 
+</div>
+
+</div>
+    
           <br>
           
-          
+          <script>
+              function myFunction() {
+                  var input, filter, ul, li, a, i, txtValue;
+                  input = document.getElementById("myInput");
+                  filter = input.value.toUpperCase();
+                  ul = document.getElementById("myUL");
+                  li = ul.getElementsByTagName("span");
+                  for (i = 0; i < li.length; i++) {
+                      a = li[i].getElementsByTagName("a")[0];
+                      txtValue = a.textContent || a.innerText;
+                      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                          li[i].style.display = "";
+                      } else {
+                          li[i].style.display = "none";
+                      }
+                  }
+              }
+              </script>
+           
               {% endblock %}
